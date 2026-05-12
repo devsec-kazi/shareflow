@@ -1,0 +1,106 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and authentication data",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "customer", "agent", "shop_owner"] },
+        "verificationStatus": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "walletBalance": { "type": "number" },
+        "referralCode": { "type": "string" },
+        "qrCode": { "type": "string" },
+        "kycData": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Inventory product for shop owners",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "shopId": { "type": "string" },
+        "name": { "type": "string" },
+        "sku": { "type": "string" },
+        "category": { "type": "string" },
+        "brand": { "type": "string" },
+        "description": { "type": "string" },
+        "mrp": { "type": "number" },
+        "purchasePrice": { "type": "number" },
+        "discountPrice": { "type": "number" },
+        "quantity": { "type": "number" },
+        "unit": { "type": "string" },
+        "image": { "type": "string" },
+        "status": { "type": "string", "enum": ["available", "out_of_stock", "discontinued"] }
+      }
+    },
+    "Shop": {
+      "title": "Shop",
+      "description": "Shop details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "location": { "type": "object" },
+        "address": { "type": "string" },
+        "contact": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Financial records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string" },
+        "amount": { "type": "number" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Request": {
+      "title": "Product Request",
+      "description": "Customer requests to shop owner",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerId": { "type": "string" },
+        "shopId": { "type": "string" },
+        "productId": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": "User",
+      "description": "All registered users"
+    },
+    "shops": {
+      "schema": "Shop",
+      "description": "All shops registered on the platform"
+    },
+    "products": {
+      "schema": "Product",
+      "description": "Individual products belonging to shops"
+    },
+    "transactions": {
+      "schema": "Transaction",
+      "description": "Financial ledger for all users"
+    },
+    "requests": {
+      "schema": "Request",
+      "description": "Product requests between customers and shops"
+    }
+  }
+}

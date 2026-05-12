@@ -1,0 +1,9 @@
+{
+  "name": "শেয়ারফ্লো (ShareFlow)",
+  "description": "একটি আধুনিক বাংলাদেশি ই-কমার্স, ইনভেন্টরি এবং শপ ম্যানেজমেন্ট প্ল্যাটফর্ম।",
+  "requestFramePermissions": [
+    "geolocation",
+    "camera"
+  ],
+  "majorCapabilities": []
+}
